@@ -1,0 +1,5 @@
+/Data/
+/test_model/
+/ETL8G/
+!spec/*.npz
+!spec/*.h5
