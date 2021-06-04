@@ -1,5 +1,8 @@
 /Data/
+/Predict/models/
 /test_model/
-/ETL8G/
+/Models/ETL8G/
 !spec/*.npz
 !spec/*.h5
+!spec/*.jpg
+!spec/*.png

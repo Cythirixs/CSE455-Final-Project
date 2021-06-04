@@ -32,16 +32,16 @@ def load():
 
 def predictImage(to_predict):
     size = 48
-    chara_model = keras.models.load_model('character48.h5')
-    hira_model = keras.models.load_model('hiragana48.h5')
-    kanji_model = keras.models.load_model('kanji.h5')
+    chara_model = keras.models.load_model('./models/character48.h5')
+    hira_model = keras.models.load_model('./models/hiragana48.h5')
+    kanji_model = keras.models.load_model('./models/kanji.h5')
 
     chara_model.compile(optimizer='adam', loss="sparse_categorical_crossentropy", metrics=['accuracy'])
     hira_model.compile(optimizer='adam', loss="sparse_categorical_crossentropy", metrics=['accuracy'])
     kanji_model.compile(optimizer='adam', loss="sparse_categorical_crossentropy", metrics=['accuracy'])
 
-    chara_type = chara_model.predict_classes(to_predict)
-    #chara_type = [1, 1, 1, 0, 0]
+    #chara_type = chara_model.predict_classes(to_predict)
+    chara_type = [0, 0, 0, 0, 0]
     print(chara_type)
 
     for i in range(0, len(chara_type)):

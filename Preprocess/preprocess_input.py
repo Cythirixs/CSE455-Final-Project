@@ -34,10 +34,9 @@ def blur(image, sigma):
     imageio.imwrite("blur_img.jpg", blur)
     return blur
 
-def main():
-    image = to_grayscale("../test_model/jjk2.jpg")
+def process(filename):
+    image = to_grayscale(filename)
     image = invert(image)
     image = threshold(image, 100)
     #image = blur(image, 10)
     
-main()

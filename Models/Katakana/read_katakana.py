@@ -12,7 +12,7 @@ def read_record_ETL1G(f):
 def read_kana():
     katakana = np.zeros([51, 1411, 63, 64], dtype=np.uint8) # 51 characters, 1411 writers, img size = 63*64
     for i in range(7,14):
-        filename = 'ETL1/ETL1C_{:02d}'.format(i)
+        filename = '../ETL1/ETL1C_{:02d}'.format(i)
         with open(filename, 'rb') as f:
             if i!=13: # file 13 only has 3 characters, others have 8 characters
                 limit = 8

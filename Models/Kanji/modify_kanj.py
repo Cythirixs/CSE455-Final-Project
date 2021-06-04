@@ -3,8 +3,8 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 
 kanji = 879
-rows = 64
-cols = 64
+rows = 48
+cols = 48
 
 kan = np.load("kanji.npz")['arr_0'].reshape([-1, 127, 128]).astype(np.float32)
 

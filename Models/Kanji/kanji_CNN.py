@@ -8,14 +8,16 @@ train_labels = np.load("kanji_train_labels.npz")['arr_0']
 test_images = np.load("kanji_test_images.npz")['arr_0']
 test_labels = np.load("kanji_test_labels.npz")['arr_0']
 
+size = 48
+
 if K.image_data_format() == "channels_first":
-  train_images = train_images.reshape(train_images.shape[0], 1,64,64)
-  test_images = test_images.reshape(test_images.shape[0], 1,64,64)
-  shape = (1,64,64)
+  train_images = train_images.reshape(train_images.shape[0], 1,size,size)
+  test_images = test_images.reshape(test_images.shape[0], 1,size,size)
+  shape = (1,size,size)
 else:
-  train_images = train_images.reshape(train_images.shape[0], 64, 64, 1)
-  test_images = test_images.reshape(test_images.shape[0], 64, 64, 1)
-  shape = (64,64,1)
+  train_images = train_images.reshape(train_images.shape[0], size, size, 1)
+  test_images = test_images.reshape(test_images.shape[0], size, size, 1)
+  shape = (size,size,1)
   
 datagen = ImageDataGenerator(rotation_range=10,zoom_range=0.2)
 datagen.fit(train_images)

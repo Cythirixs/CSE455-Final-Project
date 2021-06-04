@@ -12,7 +12,7 @@ def read_record_ETL8G(f):
 def read_hira():
     hiragana = np.zeros([71, 160, 127, 128], dtype=np.uint8)
     for i in range(1, 33):
-        filename = 'ETL8G/ETL8G_{:02d}'.format(i)
+        filename = '../ETL8G/ETL8G_{:02d}'.format(i)
         with open(filename, 'rb') as f:
             for dataset in range(5):
                 char = 0
