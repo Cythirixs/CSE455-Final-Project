@@ -49,7 +49,7 @@ Conv2D-64 > Max Pool > Conv2D-128 > Max Pool > Conv2D-192 > Max Pool > Conv2D-25
 
 The final step is just feeding the output of all the identified characters into ichiran and then recieving the output
 
-# Video Link
+# Video Link (Demo)
 xd
 
 # Experiments and Discussion
@@ -60,8 +60,16 @@ CNN Models
 Despite what the accuracy shows, in practice the models work poorly with real world example that I give it. Honestly, it could just be that I have bad handwritting but I noticed that there are some characters that the models have extreme difficulty detecting. As such, I tried expanding the models to have more layers and I also wanted to make the input 64x64 pixels instead of the current 48x48 pixels, but due to time constraints I decided not to use a larger model. 
 Another issue in regard to models is that for the model that identifies all characters, I did this by having the input take all character samples from both hiragana and kanji. However, because there are so many more kanji than hiragana samples, the models has a tendency to predict many hiragana characters as kanji characters
 
-# Results
+# Results and Improvements
 Overall it kinda works. The main issue is with the models. 
+
+If I had more time I would train more models with more layers and a higher pixel input of 64x64. For the Kanji CNN I had planned on using a model that was structured as such:
+
+Conv2D-64 > Max Pool > Conv2D-128 > Max Pool > Conv2D-512 > Conv2D-512 > Max Pool > Flatten > Dense-4096 > Dense-4096 > Softmax-879
+
+Aside from model training, I would also add more data for other character types so that the data set would be less biased. Additionally, I would also include katakana into the model which is the 3rd Japanese character type. 
+
+For preprocessing, the program can't rotate images, so that is another preoprocessing step I would implement. Currently, the program only really works with ideal inputs.
 
 # Ichiran Open Source Application
 https://github.com/tshatrov/ichiran

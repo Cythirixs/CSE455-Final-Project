@@ -211,8 +211,8 @@ def create_rect(x_hist, y_hist, image):
 
 def main():
     x_hist, y_hist, image = create_histogram("thresh_img.jpg")
-    #x_hist, y_hist, image = trim_img(x_hist, y_hist, image, 5, 50)
-    #create_rect(x_hist, y_hist, image)
+    x_hist, y_hist, image = trim_img(x_hist, y_hist, image, 5, 50)
+    create_rect(x_hist, y_hist, image)
 
-#process("../test_model/hello1.jpg")
+process("../test_model/hello1.jpg")
 main()
