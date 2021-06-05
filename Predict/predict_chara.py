@@ -2,6 +2,7 @@ from tensorflow import keras
 import imageio
 import skimage.transform
 import numpy as np
+import subprocess
 
 from kanjijapanese import kanji_label
 from hiraganajapanese import hira_label
@@ -44,19 +45,30 @@ def predictImage(to_predict):
     chara_type = [0, 0, 0, 0, 0]
     print(chara_type)
 
+    result = ""
+
     for i in range(0, len(chara_type)):
         temp = np.reshape(to_predict[i], [1, size, size, 1])
         if(chara_type[i] == 0):
             hira_type = hira_model.predict_classes(temp)
+            result = result + hira_label[hira_type[0]]
             print("hira:", hira_type, hira_label[hira_type[0]])
         else:
             kanji_type = kanji_model.predict_classes(temp)
+            result = result + kanji_label[kanji_type[0]]
             print("kanji:", kanji_type, kanji_label[kanji_type[0]])
 
+    return result
+
+def getIchiranInfo(res):
+    print(res)
+    process = "C:/Users/alexm/quicklisp/local-projects/ichiran/ichiran-cli.exe"
+    subprocess.run([process, "-i", res])
 
 def main():
     to_predict = load()
-    predictImage(to_predict)
+    result = predictImage(to_predict)
+    getIchiranInfo(result)
     
 main()
 
