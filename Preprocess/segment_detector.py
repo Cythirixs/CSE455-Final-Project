@@ -19,10 +19,13 @@ def create_histogram(filepath):
                 x_hist[j] = x_hist[j] + 1
                 y_hist[i] = y_hist[i] + 1
 
-    # x = np.arange(0, len(x_hist))
-    # plt.bar(x, x_hist, width = 3, color='black')
-    # plt.savefig('x_hist.png')
-    # plt.show()
+    x = np.arange(0, len(y_hist))
+    plt.bar(x, y_hist, width = 3, color='black')
+    plt.title("row (y) histogram")
+    plt.ylabel("number of white pixels")
+    plt.xlabel("row number")
+    plt.savefig('y_hist.png')
+    plt.show()
     
     return (x_hist, y_hist, image)
 
@@ -208,8 +211,8 @@ def create_rect(x_hist, y_hist, image):
 
 def main():
     x_hist, y_hist, image = create_histogram("thresh_img.jpg")
-    x_hist, y_hist, image = trim_img(x_hist, y_hist, image, 5, 50)
-    create_rect(x_hist, y_hist, image)
+    #x_hist, y_hist, image = trim_img(x_hist, y_hist, image, 5, 50)
+    #create_rect(x_hist, y_hist, image)
 
 #process("../test_model/hello1.jpg")
 main()
