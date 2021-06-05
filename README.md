@@ -10,3 +10,4 @@ For data I used data from ETL Character Database. Specifically, I used the datas
 The Hiragana and Kanji data had 160 writers each writer writing each character one time. Additionally, I used Keras ImageDataGenerator to create more samples with 15 degrees of rotation and 0.2 degress of zoom.
 
 # Approach
+![Flow Diagram of Application](./FlowDiagram.png)
