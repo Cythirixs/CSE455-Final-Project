@@ -18,6 +18,11 @@ def create_histogram(filepath):
             if image[i][j] == 255.0:
                 x_hist[j] = x_hist[j] + 1
                 y_hist[i] = y_hist[i] + 1
+
+    # x = np.arange(0, len(x_hist))
+    # plt.bar(x, x_hist, width = 3, color='black')
+    # plt.savefig('x_hist.png')
+    # plt.show()
     
     return (x_hist, y_hist, image)
 
@@ -33,6 +38,7 @@ def create_histogram_from_array(array):
             if array[i][j] == 255.0:
                 x_hist[j] = x_hist[j] + 1
                 y_hist[i] = y_hist[i] + 1
+    
 
     return (x_hist, y_hist)
 
@@ -123,19 +129,20 @@ def find_rect(x_hist, y_hist, image, filter):
     #y_segment.append(len(y_hist))
     print(y_segment)
 
-    # show = cv2.imread("crop_img.jpg")
+    show = cv2.imread("crop_img.jpg")
 
-    # for x in x_segment:
-    #     cv2.line(show, (x, 0), (x, len(y_hist)), (0, 0, 255), 2)   
+    for x in x_segment:
+        cv2.line(show, (x, 0), (x, len(y_hist)), (0, 0, 255), 2)   
 
-    # color = [(0, 0, 255), (0, 255, 0)]
-    # i = 0
-    # for y in y_segment:
-    #     cv2.line(show, (0, y), (len(x_hist), y), color[i%2], 2)
-    #     i = i + 1
+    color = [(0, 0, 255), (0, 0, 255)]
+    i = 0
+    for y in y_segment:
+        cv2.line(show, (0, y), (len(x_hist), y), color[i%2], 2)
+        i = i + 1
 
-    # cv2.imshow("Image", show)
-    # cv2.waitKey(0)
+    cv2.imshow("Image", show)
+    cv2.imwrite("bounding_boxes.jpg", show)
+    cv2.waitKey(0)
 
     return (x_segment, y_segment)
 
@@ -204,5 +211,5 @@ def main():
     x_hist, y_hist, image = trim_img(x_hist, y_hist, image, 5, 50)
     create_rect(x_hist, y_hist, image)
 
-process("../test_model/hello1.jpg")
+#process("../test_model/hello1.jpg")
 main()

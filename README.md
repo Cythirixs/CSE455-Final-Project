@@ -10,4 +10,27 @@ For data I used data from ETL Character Database. Specifically, I used the datas
 The Hiragana and Kanji data had 160 writers each writer writing each character one time. Additionally, I used Keras ImageDataGenerator to create more samples with 15 degrees of rotation and 0.2 degress of zoom.
 
 # Approach
-![Flow Diagram of Application](./FlowDiagram.png)
+![Flow Diagram of Application](./Images/FlowDiagram.png)
+
+This application can be broken up into 4 main parts. Preprocessing, segmentation, prediction, and then parsing. 
+For preprocessing, I first take in the image given by the user and first make it grayscale because we don't care about color pixels in this case of character recognition. Next I invert the image because the model is trained using images that are white characters set on a black background. Next, I thresh the images to make all pixels in the image be either completely black or completely white. Finally, I crop the image to get rid of extra space that is not needed. 
+
+![Grayscale Example](./Images/gray_img.jpg)
+![Invert Example](./Images/invert_img.jpg)
+![Thresh Example](./Images/thresh_img.jpg)
+![Crop Example](./Images/crop_img.jpg)
+
+The second step is segmentation. The program makes a histogram of all the white pixels in each column and row. This way, for each character there will be a high amount of white pixels and when there is no character or a space then there will be no/few white pixels. By tracking the spaces in these histograms we can create proper bounding boxes for the characters. After creating proper bounding boxes, parse each individual detected image out of the full image and crop any extra space.
+
+![x histogram](./Images/x_hist.png)
+![y historgam](./Images/y_hist.png)
+![bounding boxes](./Images/bounding_boxes.jpg)
+
+# Ichiran Open Source Application
+https://github.com/tshatrov/ichiran
+# References
+http://cs231n.stanford.edu/reports/2016/pdfs/262_Report.pdf 
+https://towardsdatascience.com/creating-a-japanese-handwriting-recognizer-70be12732889 
+https://github.com/Nippon2019/Handwritten-Japanese-Recognition 
+https://towardsdatascience.com/segmentation-in-ocr-10de176cf373 
+
