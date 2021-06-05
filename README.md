@@ -26,6 +26,30 @@ The second step is segmentation. The program makes a histogram of all the white 
 ![y historgam](./Images/y_hist_resize.png)
 ![bounding boxes](./Images/bounding_boxes_resize.jpg)
 
+The third step uses three convolutional neural networks to predict the character. The Japanese Language has multiple character types, mainly split into Hiragana, Katakana, and Kanji. My program only handles Hiragana and Kanji for now. Since there are different character types, I have one CNN that first identifies which type of Japanese character the character is and then sends the character to either the Hiragana CNN or the Kanji CNN. 
+
+Each CNN takes in a 48x48 pixel input and outputs a classification. All models use Relu activation and generally used 40 epochs.\
+Training and testing data was split 80/20
+
+Hiragana CNN Model:
+Conv2D-64 > Max Pool > Conv2D-128 > Max Pool > Conv2D-192 > Max Pool > Conv2D-256 > Max Pool > Flatten > Dense-1024 > Dense-1024 > Softmax-71
+
+Kanji CNN Model:
+Conv2D-64 > Max Pool > Conv2D-64 > Max Pool > Flatten > Dense-2048 > Softmax-879
+
+General Character Identification:
+Conv2D-64 > Max Pool > Conv2D-128 > Max Pool > Conv2D-192 > Max Pool > Conv2D-256 > Max Pool > Flatten > Dense-1024 > Dense-1024 > Softmax-71
+
+|          | Hiragana | Kanji  | All Characters |
+| -------- | -------- | ------ | -------------- |
+| Accuracy | 99.55%   | 98.61% |    99.71%      |
+
+The final step is just feeding the output of all the identified characters into ichiran and then recieving the output
+
+# Experiments
+# Results
+# Discussion
+
 # Ichiran Open Source Application
 https://github.com/tshatrov/ichiran
 # References
