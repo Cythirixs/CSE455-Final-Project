@@ -32,12 +32,15 @@ Each CNN takes in a 48x48 pixel input and outputs a classification. All models u
 Training and testing data was split 80/20
 
 Hiragana CNN Model:
+
 Conv2D-64 > Max Pool > Conv2D-128 > Max Pool > Conv2D-192 > Max Pool > Conv2D-256 > Max Pool > Flatten > Dense-1024 > Dense-1024 > Softmax-71
 
 Kanji CNN Model:
+
 Conv2D-64 > Max Pool > Conv2D-64 > Max Pool > Flatten > Dense-2048 > Softmax-879
 
 General Character Identification:
+
 Conv2D-64 > Max Pool > Conv2D-128 > Max Pool > Conv2D-192 > Max Pool > Conv2D-256 > Max Pool > Flatten > Dense-1024 > Dense-1024 > Softmax-71
 
 |          | Hiragana | Kanji  | All Characters |
@@ -46,9 +49,19 @@ Conv2D-64 > Max Pool > Conv2D-128 > Max Pool > Conv2D-192 > Max Pool > Conv2D-25
 
 The final step is just feeding the output of all the identified characters into ichiran and then recieving the output
 
-# Experiments
+# Video Link
+xd
+
+# Experiments and Discussion
+Character Segmentation
+At first I tried using the built in character segmentator that comes with tesseract-ocr, but found it was extremely sensitive to the test inputs I was giving it and it tended to make bounding boxes too tight. Therefore, I ended up writing my own character segmentor which has several limitations, but works decently. 
+
+CNN Models
+Despite what the accuracy shows, in practice the models work poorly with real world example that I give it. Honestly, it could just be that I have bad handwritting but I noticed that there are some characters that the models have extreme difficulty detecting. As such, I tried expanding the models to have more layers and I also wanted to make the input 64x64 pixels instead of the current 48x48 pixels, but due to time constraints I decided not to use a larger model. 
+Another issue in regard to models is that for the model that identifies all characters, I did this by having the input take all character samples from both hiragana and kanji. However, because there are so many more kanji than hiragana samples, the models has a tendency to predict many hiragana characters as kanji characters
+
 # Results
-# Discussion
+Overall it kinda works. The main issue is with the models. 
 
 # Ichiran Open Source Application
 https://github.com/tshatrov/ichiran
