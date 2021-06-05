@@ -15,16 +15,16 @@ The Hiragana and Kanji data had 160 writers each writer writing each character o
 This application can be broken up into 4 main parts. Preprocessing, segmentation, prediction, and then parsing. 
 For preprocessing, I first take in the image given by the user and first make it grayscale because we don't care about color pixels in this case of character recognition. Next I invert the image because the model is trained using images that are white characters set on a black background. Next, I thresh the images to make all pixels in the image be either completely black or completely white. Finally, I crop the image to get rid of extra space that is not needed. 
 
+![Original Example](./Images/original_resize.jpg)
 ![Grayscale Example](./Images/gray_resize.jpg)
 ![Invert Example](./Images/invert_resize.jpg)
 ![Thresh Example](./Images/thresh_resize.jpg)
-![Crop Example](./Images/crop_reisze.jpg)
 
 The second step is segmentation. The program makes a histogram of all the white pixels in each column and row. This way, for each character there will be a high amount of white pixels and when there is no character or a space then there will be no/few white pixels. By tracking the spaces in these histograms we can create proper bounding boxes for the characters. After creating proper bounding boxes, parse each individual detected image out of the full image and crop any extra space.
 
 ![x histogram](./Images/x_hist_resize.png)
 ![y historgam](./Images/y_hist_resize.png)
-![bounding boxes](./Images/bounding_resize.jpg)
+![bounding boxes](./Images/bounding_boxes_resize.jpg)
 
 # Ichiran Open Source Application
 https://github.com/tshatrov/ichiran
