@@ -50,7 +50,7 @@ Conv2D-64 > Max Pool > Conv2D-128 > Max Pool > Conv2D-192 > Max Pool > Conv2D-25
 The final step is just feeding the output of all the identified characters into ichiran and then recieving the output
 
 # Video Link (Demo)
-xd
+https://www.youtube.com/watch?v=FaQr9qygbCU 
 
 # Experiments and Discussion
 Character Segmentation

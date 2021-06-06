@@ -19,13 +19,13 @@ def create_histogram(filepath):
                 x_hist[j] = x_hist[j] + 1
                 y_hist[i] = y_hist[i] + 1
 
-    x = np.arange(0, len(y_hist))
-    plt.bar(x, y_hist, width = 3, color='black')
-    plt.title("row (y) histogram")
-    plt.ylabel("number of white pixels")
-    plt.xlabel("row number")
-    plt.savefig('y_hist.png')
-    plt.show()
+    # x = np.arange(0, len(y_hist))
+    # plt.bar(x, y_hist, width = 3, color='black')
+    # plt.title("row (y) histogram")
+    # plt.ylabel("number of white pixels")
+    # plt.xlabel("row number")
+    # plt.savefig('y_hist.png')
+    # plt.show()
     
     return (x_hist, y_hist, image)
 
@@ -79,7 +79,7 @@ def trim_img(x_hist, y_hist, image, thresh, space):
     imageio.imwrite("crop_img.jpg", crop)
     return (x_hist_crop, y_hist_crop, crop)
     
-def find_rect(x_hist, y_hist, image, filter):
+def find_rect(x_hist, y_hist, image, filter, display):
     space = 10
     expected = 120
     # x = np.arange(0, len(y_hist))
@@ -143,14 +143,15 @@ def find_rect(x_hist, y_hist, image, filter):
         cv2.line(show, (0, y), (len(x_hist), y), color[i%2], 2)
         i = i + 1
 
-    cv2.imshow("Image", show)
-    cv2.imwrite("bounding_boxes.jpg", show)
-    cv2.waitKey(0)
+    if display == True:
+        cv2.imshow("Image", show)
+        cv2.imwrite("bounding_boxes.jpg", show)
+        cv2.waitKey(0)
 
     return (x_segment, y_segment)
 
 def create_rect(x_hist, y_hist, image):
-    (x_segment, y_segment) = find_rect(x_hist, y_hist, image, 20)
+    (x_segment, y_segment) = find_rect(x_hist, y_hist, image, 20, True)
 
     n = 0
     for i in range(0, (len(x_segment)//2)):
@@ -168,7 +169,7 @@ def create_rect(x_hist, y_hist, image):
             imageio.imwrite(path, crop)
 
             x_temp, y_temp = create_histogram_from_array(crop)
-            x_trim, y_trim = find_rect(x_temp, y_temp, crop, 10)
+            x_trim, y_trim = find_rect(x_temp, y_temp, crop, 10, False)
             
             xt1 = 0
             xt2 = 0 

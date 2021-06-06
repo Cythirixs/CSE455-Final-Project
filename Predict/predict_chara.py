@@ -41,8 +41,8 @@ def predictImage(to_predict):
     hira_model.compile(optimizer='adam', loss="sparse_categorical_crossentropy", metrics=['accuracy'])
     kanji_model.compile(optimizer='adam', loss="sparse_categorical_crossentropy", metrics=['accuracy'])
 
-    #chara_type = chara_model.predict_classes(to_predict)
-    chara_type = [0, 0, 0, 0, 0]
+    chara_type = chara_model.predict_classes(to_predict)
+    #chara_type = [0, 0, 0, 0, 0]
     print(chara_type)
 
     result = ""
